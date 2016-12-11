@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+           <title>Parsing XML in ajgularJS</title> 
+            <script src="/node_modules/angular/angular.min.js"></script>
+            <script src="/bower_components/x2js/xml2json.js"></script>
+            <script src="/bower_components/angular-x2js/src/x2js.js"></script>
+            <script src="/static/js/jquery-3.1.1.js"></script>    
+        </head>
+        <body>
+            Hello
+            <div ng-app="httpApp" ng-controller="httpController">
+            </div>
+            <script>
+                    var app = angular.module('httpApp', []);
+app.controller('httpController', function ($scope, $http) {
+  $http.get("/sample_data/dumplit/Badges.xml",
+            {
+    transformResponse: function (cnv) {
+      var x2js = new X2JS();
+      var aftCnv = x2js.xml_str2json(cnv);
+      return aftCnv;
+    }
+  })
+    .success(function (response) {
+    console.log(response);
+  });
+}); 
+            
+            </script>
+            
+</html>

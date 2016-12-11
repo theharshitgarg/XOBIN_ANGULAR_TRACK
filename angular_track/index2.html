@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html ng-app>
+    <head>
+        <title>techVarta</title>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+        
+        <style>
+            #dv1{ border:1px solid #DBDCE9;  margin-left:auto; margin-right:auto;  width:550px; border-radius:7px;   padding: 25px; }
+            div {width: 200px;}
+            h2 {font: 400 40px/1.5 Helvetica, Verdana, sans-serif;             margin: 0;              padding: 0;           }
+            ul {list-style-type: none;  margin: 0;padding: 0;            }
+            li {font: 200 20px/1.5 Helvetica, Verdana, sans-serif;                border-bottom: 1px solid #ccc;            }
+            li:last-child {border: none; }
+            li a { text-decoration: none; color: #000; display: block;        }
+        </style>
+    </head>
+    <body>
+        <div ng-app="myApp" ng-controller="myCtrl"> 
+
+            <p>Today's welcome message is:</p>
+            <h1>{{myWelcome}}</h1>
+
+        </div>
+
+    <script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function($scope, $http) {
+        $http.get("welcome.htm")
+        .then(function(response) {
+            $scope.myWelcome = response.data;
+        });
+    });
+    </script>
+
+        <div ng-app="httpApp" ng-controller="httpController">
+            
+        </div>
+        <div ng-controller="sample">
+            <input type="text" ng-model="ex">
+            <p>{{ ex }}</p>
+        </div>
+        
+        <script>
+            var app = angular.module('httpApp', []);
+            app.controller('httpController', function ($scope, $http) {
+                $http.get("/sample_data/dumplist/Badges.xml",
+                        {
+                            transformResponse: function (cnv) {
+                                var x2js = new X2JS();
+                                var aftCnv = x2js.xml_str2json(cnv);
+                                return aftCnv;
+                            }
+                        })
+                .success(function (response) {
+                    console.log(response);
+                });
+            });
+        </script>
+        
+    </body>
+</html>
+
+
+

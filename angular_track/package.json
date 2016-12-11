@@ -1,0 +1,21 @@
+{
+  "name": "angular_track",
+  "version": "1.0.0",
+  "description": "This is angular based online tech discussion forum for xobin hackathon.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "tech",
+    "discussion",
+    "xobin"
+  ],
+  "author": "Harshit Garg",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.6.0",
+    "chart.js": "^2.4.0",
+    "xml2json": "^0.10.0"
+  }
+}
